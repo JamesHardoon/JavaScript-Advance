@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>22 一个神奇的原型链</title>
+</head>
+<body>
+	<div id="dv"></div>
+
+	<script>
+		//原型链:实例对象和原型对象之间,通过__proto__来联系
+		
+		var divObj = document.getElementById("dv");
+		console.dir(divObj);
+
+		/**
+		 * divObj.__ptoto__--->(指向)
+		 * HTMLDivElement.prototype的__proto__--->
+		 * HTMLElement.prototype的__proto__--->
+		 * Element.prototype的__proto__--->
+		 * Node.prototype的__proto__--->
+		 * EvenTarget.protptype的__proto__--->
+		 * Object.prototype没有__proto__,所以,Object.prototype中的__proto__是null
+		 *
+		 */
+
+	</script>
+</body>
+</html>

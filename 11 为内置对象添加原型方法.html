@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11 为内置对象添加原型方法</title>
+</head>
+<body>
+	
+	<script>
+		//为内置对象添加原型方法
+		
+		//实例中的方法如果没有,则去创建该实例对象的构造函数的原型对象中找
+		
+		//我们可以为系统的对象的原型中添加方法,相当于改变源码
+		
+		//如下,为系统创建一个倒序字符串的方法
+		String.prototype.myReverse = function () {
+			for (var i = this.length - 1; i >= 0; i--) {
+				console.log(this[i]);
+			}
+		};
+		var str = "abcdefg";
+		str.myReverse();
+	</script>
+</body>
+</html>

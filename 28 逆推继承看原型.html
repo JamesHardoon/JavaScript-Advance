@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>28 逆推继承看原型</title>
+</head>
+<body>
+	
+	<script>
+		function F1(age) {
+			this.age = age;
+		}
+		function F2(age) {
+			this.age = age;
+		}
+		//改变指向,实现继承
+		F2.prototype = new F1(10);
+		function F3(age) {
+			this.age = age;
+		}
+		//改变指向,实现继承
+		F3.prototype = new F2(20);
+
+		var f3 = new F3(30);
+		console.log(f3.age);//30
+		//.log(Object.prototype.__proto__);//null
+
+		/**
+		 * 
+		 * 上面,f3的实例对象因为改变的指向,所以,最终指向了f2的实例对象,
+		 * 同理,f2的实例对象也因为改变了指向,最终指向了f1的实例对象,
+		 * 而f1的实例对象指向的是Object.prototype,
+		 * 而Object.prototype.__proto__指向null
+		 *
+		 * 
+		 * 又因为,若在自己的实例对象中能找到某个属性,则直接使用,
+		 * 若没有找到则从它的原型中一层一层往上找,最终找到Object中,
+		 * 若还是没有找到,则报undefined
+		 *
+		 * 
+		 */
+	</script>
+</body>
+</html>

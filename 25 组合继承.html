@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>25 组合继承</title>
+</head>
+<body>
+	
+	<script>
+		//已经学过的继承的方法
+		//原型实现继承
+		//借用构造函数实现继承
+		//组合继承:原型继承+借用构造函数继承
+		//组合继承可以解决借用构造函数继承中只能继承属性不能继承方法的问题
+
+		function Person(name,age,sex) {
+			this.name=name;
+			this.age=age;
+			this.sex=sex;
+		}
+		Person.prototype.sayHi=function () {
+			console.log("阿涅哈斯诶呦");
+		};
+		function Student(name , age , sex , score) {
+			//借用构造函数实现继承:解决值重复的问题
+			Person.call(this , name , age , sex , score);//this指的就是Student
+			this.score = score;
+		}
+		//改变原型指向---继承
+		Student.prototype = new Person();//不传值
+		Student.prototype.eat = function () {
+			console.log("吃东西");
+		};
+		var stu1 = new Student("小黑" , 20 , "男" , "100分");
+		console.log(stu1.name , stu1.age , stu1.sex , stu1.score);
+		stu1.sayHi();
+		stu1.eat();
+		var stu2 = new Student("小白" , 20 , "女" , "99分");
+		console.log(stu2.name , stu2.age , stu2.sex , stu2.score);
+		stu2.sayHi();
+		stu2.eat();
+	</script>
+</body>
+</html>

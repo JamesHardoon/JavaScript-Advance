@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>14 案例随机小方块</title>
+</head>
+<style>
+	.map {
+		width: 800px;
+		height: 600px;
+		background-color: #ccc;
+		position: relative;
+	}
+</style>
+<body>
+	<div class="map"></div>
+
+	<script src="js/common.js"></script>
+	<script>
+		//产生随机数的自调用函数
+		(function (window) {//传入window主要是将局部变量变为全局变量
+			function Random() {
+
+			}
+			Random.prototype.getRandom = function (min , max) {
+				return Math.floor(Math.random() * (max - min) + min);
+			};
+			//把全局变量暴露给window顶级对象,就成了全局的对象
+			window.Random = new Random();
+		})(window);//自调用构造函数的方式,分号一定要加上
+
+		//产生小方块的对象
+		(function (window) {
+			// console.log(Random.getRandom(0 , 5));
+			// 选择器的方式来获取元素对象
+			var map = document.querySelector(".map");
+
+			//事物的构造函数
+			function Food(width , height , color) {
+				this.width = width || 0;//默认的小方块的宽度
+				this.height = height || 0;//默认的小方块的高度
+				//小方块的横纵坐标
+				this.x = 0;//横坐标随机产生
+				this.y = 0;//纵坐标随机产生
+				this.color = color;//小方块的背景颜色
+				this.element = document.createElement("div");//小方块的元素
+			}
+
+			//初始化小方块的显示的效果及位置---显示地图上
+			Food.prototype.init = function(map) {
+				//设置小方块的样式
+				var div = this.element;
+				div.style.position = "absolute";//脱离文档流
+				div.style.width = this.width + "px";
+				div.style.height = this.height + "px";
+				div.style.backgroundColor = this.color;
+				// 把小方块加到map地图中
+				map.appendChild(div);
+				this.render(map);//原型方法内部调用方法
+			};
+
+			//产生随机位置
+			Food.prototype.render = function (map) {
+				//随机产生横纵坐标
+				//map.offsetWidth / this.width即地图的宽度能占据多少个小方块,此时坐标点的个数
+				//this.width即小方块的宽度
+				//map.offsetWidth / this.width * (this.width)即小方块在横坐标上的坐标值
+				var x = Random.getRandom(0 , map.offsetWidth / this.width) * this.width;
+				var y = Random.getRandom(0 , map.offsetHeight / this.height) * this.height;
+				this.x = x;
+				this.y = y;
+				var div = this.element;//this.element=document.createElement("div");即小方块
+				div.style.left = this.x + "px";
+				div.style.top = this.y + "px";
+			};
+			//实例化对象
+			var fd = new Food(20 , 20 , "green");//小方块的宽高颜色
+			fd.init(map);
+		})(window);
+	</script>
+
+</body>
+</html>

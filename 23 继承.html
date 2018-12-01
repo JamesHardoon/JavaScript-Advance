@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>23 继承</title>
+</head>
+<body>
+	
+	<script>
+		/**
+		 * 面向对象编程思想:根据需求,分析对象,找到对象有什么特征和行为,通过代码的方式来实现需求,
+		 * 想要实现这个需求,就要创建对象,想要创建对象,就应该有构造函数,然后通过构造函数来创建对象,
+		 * 通过对象来调用属性和方法来实现相应的功能及需求,即可
+		 *
+		 * 首先JS不是一门面向对象的语言,JS是一门基于对象的语言,那么为什么学习JS还要学习面向对象,
+		 * 因为面向对象的思想适合人的想法,编程起来会更加的方便,以及后期的维护...
+		 *
+		 *
+		 * 面向对象的编程语言中有类(class)的概念(也是一种特殊的数据类型),但是JS不是面向对象的语言,
+		 * 所以,JS中没有类(class),但是JS可以模拟面向对象的思想编程,JS中会通过构造函数来模拟类的概念(class).
+		 *
+		 *
+		 * 面向对象的特征:封装,继承,多态
+		 *
+		 * 封装:就是包装
+		 * 一个值储存在一个变量中---封装
+		 * 一堆重复的代码放在一个函数中---封装
+		 * 一系列的属性放在一个对象中---封装
+		 * 一些功能类似的函数(方法)放在一个对象中---封装
+		 * 好多相似的对象放在一个文件中---封装
+		 *
+		 *
+		 * 继承:
+		 * 首先继承是一种关系,类(class)与类之间的关系,JS中没有类,但是可以通过构造函数模拟类,
+		 * 然后通过原型来实现继承
+		 * 继承也是为了数据共享,JS中的继承也是为了实现数据共享
+		 *
+		 * 原型作用之一:数据共享,节省内存空间
+		 * 原型作用之二:为了实现继承
+		 *
+		 * 继承是一种关系:父类级别与子类级别的关系
+		 *
+		 * 多态:一个对象有不同的行为,或者是同一个行为针对不同的对象,
+		 * 产生不同的结果,想要有多态,就要先有继承,JS中可以模拟多态,但是不会去使用,也不会模拟
+		 * 
+		 */
+		
+		//JS中通过原型来实现继承
+		function Person(name , age , sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+		Person.prototype.eat = function () {
+			console.log("人可以吃东西");
+		};
+		Person.prototype.sleep = function () {
+			console.log("人在睡觉");
+		};
+		Person.prototype.play = function () {
+			console.log("生活就是不一样的玩法而已");
+		};
+
+		function Student(score) {
+			this.score = score;
+		}
+		//改变学生的原型的指向即可=====>此时学生已经与人这个构造函数发送了关系
+		Student.prototype = new  Person("小明" , 10 , "男");
+		Student.prototype.study = function () {
+			console.log("敲代码");
+		};
+
+		//相同的代码太多,造成了代码的冗余(重复的代码)
+		var stu = new Student(100);
+		console.log(stu.name);
+		console.log(stu.age);
+		console.log(stu.sex);
+		stu.eat();
+		stu.sleep();
+		stu.play();
+		console.log("下面是学生对象中自己有的");
+		console.log(stu.score);
+		stu.study();
+	</script>
+</body>
+</html>

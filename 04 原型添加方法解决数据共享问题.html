@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04 原型添加方法解决数据共享问题</title>
+</head>
+<body>
+	
+	<script>
+		function Person(name , age) {
+			this.name = name;
+			this.age = age;
+		}
+		//通过原型来添加方法,解决数据共享问题
+		
+		Person.prototype.eat = function () {
+			console.log("吃西瓜");
+		};
+		
+		var per1 = new Person("小明" , 20);
+		var per2 = new Person("小红" , 21);
+
+		console.dir(per1);
+		console.dir(per2);
+		console.log(per1.eat == per2.eat);//true
+	</script>
+</body>
+</html>

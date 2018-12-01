@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>01 三种创建对象的方式</title>
+</head>
+<body>
+	
+	<script type="text/javascript">
+		//创建对象的三种方式
+		/**
+		 * 1.字面量的方式
+		 * 2.调用系统的构造函数
+		 * 3.自定义构造函数方式
+		 */
+		
+		//1.字面量的方式(不能确定对象的具体类型,都为Object类型)
+		//实例对象
+		var per1 = {
+			name:"詹姆斯",
+			age:33,
+			sex:"男",
+			play function () {
+				console.log("打猛龙");
+			}
+		};
+
+		//2.调用系统的构造函数(不能确定对象的具体类型,都为Object类型)
+		var per2 = new Object();
+		per2.name = "科比";
+		per2.age = 38;
+		per2.sex = "男";
+		per2.play = function () {
+			console.log("打凯尔特人");
+		}
+
+		//3.自定义构造函数
+		function Person(name , age , sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+			this.play = function () {
+				console.log("看球赛");
+			};
+		}
+		var per3 = new Person("杜兰特" , 28 , "男");
+	</script>
+</body>
+</html>

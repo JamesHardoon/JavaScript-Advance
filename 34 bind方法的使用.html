@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>34 bind方法的使用</title>
+</head>
+<body>
+	
+	<script>
+		//通过对象,调用方法,产生随机数
+		
+		function ShowRandom() {
+			//产生1-10的随机数
+			this.number = parseInt(Math.random() * 10 + 1);
+		}
+		//添加原型方法
+		ShowRandom.prototype.show1 = function () {
+			//改变了定时器中的this的指向,本来应该是window,现在是实例对象了
+			window.setInterval(this.show2.bind(this) , 1000);
+		};
+		//添加原型方法
+		ShowRandom.prototype.show2 = function () {
+			//显示随机数
+			console.log(this.number);
+		};
+		//实例对象
+		var sr = new ShowRandom();
+		//调动方法,输出随机数字
+		//调用这个方法一次,可以不听的产生随机数字
+		sr.show1();
+
+		/**
+		 * 1秒产生了一个随机数,但是每秒产生的随机数都相同
+		 *
+		 * 
+		 */
+	</script>
+</body>
+</html>

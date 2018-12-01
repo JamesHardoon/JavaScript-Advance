@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05 体会面向过程和面向对象的编程思想</title>
+</head>
+<style>
+	div {
+		width: 200px;
+		height: 200px;
+		background-color: red;
+	}
+</style>
+<body>
+	<input type="button" value="显示效果" id="btn">
+	<div id="dv"></div>
+
+	<script src="js/common.js"></script>
+	<script>
+		// function ChangeStyle(btnObj , dvObj , json) {//ChangeStyle是构造函数
+		// 	this.btnObj = btnObj;
+		// 	this.dvObj = dvObj;
+		// 	this.json = json;
+		// }
+		// ChangeStyle.prototype.init = function () {
+		// 	//点击按钮,改变div多个样式属性值
+		// 	var that = this;
+		// 	this.btnObj.onclick = function () {//按钮
+		// 		for (var key in that.json) {
+		// 			that.dvObj.style[key] = that.json[key];
+		// 		}
+		// 	};
+		// };
+	
+		//实例化对象
+		// var json = {"width":"300px" , "height":"400px" , "backgroundColor":"blue" , "opacity":"0.1"};
+		// var cs = new ChangeStyle(my$("btn") , my$("dv") , json);
+		// cs.init();//调用方法
+	</script>
+
+	<script>
+		//1.面向过程的思想
+		//点击按钮,改变div的背景颜色
+		// document.getElementById("btn").onclick = function () {
+		// 	document.getElementById("dv").style.backgroundColor = "yellow";
+		// }
+
+		//2.面向对象的思想---初级
+		//点击按钮改变div的背景颜色
+		//按钮是一个对象,div是一个对象,颜色也是一个对象
+		function ChangeStyle(btnId , dvId , color) {//ChangeStyle是构造函数
+			this.btnObj = document.getElementById(btnId);//按钮对象
+			this.dvObj = document.getElementById(dvId);//div对象
+			this.color = color;//颜色
+		}
+		//数据共享来改变背景颜色
+		ChangeStyle.prototype.init = function () {
+			console.log(this);//这里的this就是实例对象---也就是当前对象cs
+			var that = this;//这里是将this(cs实例对象赋值给that)
+			this.btnObj.onclick = function () {//这个函数里面的this是指btnObj这个对象,不是cs实例对象
+				//console.log(this);//指btn
+				that.dvObj.style.backgroundColor = that.color;//改变cs实例对象的dv对象的背影颜色
+			};
+		};
+		//实例化对象
+		var cs = new ChangeStyle("btn" , "dv" , "yellow");
+		cs.init();
+	</script>
+</body>
+</html>

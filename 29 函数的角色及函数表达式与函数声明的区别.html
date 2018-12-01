@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>29 函数的角色及函数表达式与函数声明的区别</title>
+</head>
+<body>
+	
+	<script>
+		//函数的角色分为函数的声明和函数表达式
+		
+		//函数声明
+		function f1() {
+			console.log("函数声明");
+		}
+		f1();
+
+		//函数表达式
+		var f2 = function () {
+			console.log("函数表达式");
+		};
+		f2();
+	</script>
+
+	<script>
+	/*//函数声明
+	if(true){
+		function f1() {
+			console.log("哈哈,我又变帅了");
+	 	}
+	}else{
+		function f1() {
+	   		console.log("小苏好猥琐");
+	 	}
+	}
+	f1();
+	//谷歌中输出上面的,IE8中输出下面的*/
+
+
+    /*//函数表达式
+    var f2;
+    if(true){
+      f2=function () {
+        console.log("哈哈,我又变帅了");
+      };
+    }else{
+      f2=function () {
+        console.log("小苏好猥琐");
+      };
+    }
+    f2();
+    //函数表达式的方式在IE8和谷歌浏览器中输出的都正常*/
+
+	/*函数声明和函数表达式的区别
+	
+	函数声明如果放在if-else的语句中,在IE8的浏览器中会出问题
+	所以,以后宁愿用函数表达式,也不要使用函数声明*/
+	</script>
+</body>
+</html>

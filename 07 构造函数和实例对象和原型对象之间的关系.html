@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07 构造函数和实例对象和原型对象之间的关系</title>
+</head>
+<body>
+	
+	<script>
+		//原型的作用之一:共享数据,节省内存空间
+		//构造函数
+		function Person(age , sex) {
+			this.age = age;
+			this.sex = sex;
+		}
+		//通过构造函数的原型添加一个方法
+		Person.prototype.eat = function () {
+			console.log("现在在干什么");
+		};
+
+		//实例化对象
+		var per = new Person("小明" , 20);
+		per.eat();//也就是per.__proto__.rat();
+
+		/**
+		 * 构造函数,原型对象,实例对象之间的关系
+		 * 1.构造函数可以实例化对象
+		 * 2.构造函数中有一个属性叫prototype,是构造函数的原型对象
+		 * 3.构造函数的原型对象(prototype)中有一个constructor构造器,这个构造器指向的就是自己所在的原型对象所在的构造函数
+		 * 4.实例对象的原型对象(__proto__)指向的是该构造函数的原型对象
+		 * 5.构造函数的原型对象(prototype)中的方法被实例对象直接访问的
+		 *
+		 */
+	</script>
+</body>
+</html>

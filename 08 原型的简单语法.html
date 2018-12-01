@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>08 原型的简单语法</title>
+</head>
+<body>
+	<script>
+		function Student(name , age , sex) {
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+		}
+		//简单的原型写法
+		Student.prototype = {
+			//这种写法的确定就是需要,手动修改构造器的指向
+			constructor: Student, //这句代码很重要
+			height: "188",
+			weight: "60kg",
+			study: function () {
+				console.log("好好学习");
+			},
+			eat: function () {
+				console.log("吃好吃的");
+			}
+		};
+		//实例化对象,并初始化
+		var stu = new Student("张三" , 20 , "男");
+		stu.eat();
+		stu.study();
+		console.log(Student);
+		console.log(stu);
+	</script>
+</body>
+</html>

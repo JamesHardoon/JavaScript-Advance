@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06 复习原型</title>
+</head>
+<body>
+	
+<script>
+	//构造函数
+	function Person(sex , age) {
+		this.sex = sex;
+		this.age = age;
+	}
+
+	//通过原型添加方法
+	Person.prototype.sayHi = function () {
+		console.log("打招呼");
+	};
+	//实例化对象
+	var per = new Person("男" , 20);
+	console.log(per.__proto__.constructor == Person.prototype.constructor);//实例对象,true
+	console.dir(Person);//f Person(sex , age)
+
+	var per2 = new Person("女" , 30);
+	console.log(per.sayHi == per2.sayHi);//true
+
+	
+	/**
+	 * 实例对象有两个属性,__proto__,也是对象,叫做原型,不是标准的属性,是浏览器使用的
+	 *
+	 * 构造函数中有一个属性,prototype,也是对象,也叫做原型,是标准属性,是程序员使用的
+	 *
+	 * 原型--->__proto__或者是prototype,都是原型对象
+	 * 原型的作用:共享数据,节省内存空间
+	 *
+	 */
+</script>
+</body>
+</html>

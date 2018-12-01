@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>48 递归</title>
+</head>
+<body>
+	
+	<script>
+		//递归:函数中调用函数自己,此时就是递归,递归一定要有结束条件
+		
+		var i = 0;
+		function f1() {
+			i++;
+			if (i < 5) {
+				f1();
+				console.log("===");
+			}
+			console.log("这是递归");
+		}
+		f1();
+	</script>
+</body>
+</html>
